@@ -1,0 +1,26 @@
+# This installs and configures the Mainz OSSE in Docker.
+# Made by Sebastian Mate (sebastian.mate@fau.de) as part of the Dockerbank TMF project in June 2016
+
+# Installation procedure:
+ 
+# Delete, install and run the OSSE container:
+
+docker stop osse
+docker rm osse
+docker build -t tmfev/osse:1.00 .
+docker run --cap-add=SYS_PTRACE -v /etc/localtime:/etc/localtime:ro -it -p 443:443 --name osse tmfev/osse:1.00 /bin/bash
+
+# In the container, run (post-installation):
+
+service postgresql start
+apt-get install osse-demo
+
+# OSSE can than be accessed on https://localhost:443
+
+
+
+
+
+
+
+
